@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NimbusFile - File Upload and Retrieve</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include SweetAlert library (already included) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>NimbusFile: Effortless Upload, Retrieve, and Share</h1>
+        <form id="uploadForm" action="FileUploadServlet" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <input type="submit" value="Upload">
+        </form>
+        <h2>Retrieve File / Text</h2>
+        <form action="FileRetrieveServlet" method="get">
+            <input type="text" name="fileCode" placeholder="Enter file code" required>
+            <input type="submit" value="Retrieve">
+        </form>
+        <h3>Share Text</h3>
+        <form id="shareTextForm" action="FileUploadServlet" method="post">
+            <textarea name="sharedText" rows="5" placeholder="Enter your text here" required></textarea>
+            <input type="hidden" name="textSharing" value="true">
+            <input type="submit" value="Share">
+        </form>
+        <div id="visitorCount">
+            <h4>Number of Visitors: <span id="count"></span></h4>
+        </div>
+    </div>
+
+    <!-- Include your separate JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
