@@ -2,7 +2,7 @@
 
 ## Overview
 
-This web application is designed to facilitate the sharing of files and text snippets through a simple, user-friendly interface. Users can upload files or input text, which the application then assigns a unique code. This code can be shared with others, who can then use it to download the file or view the text. The application is built using Java Servlets and runs on an Apache Tomcat server.
+This web application is designed to facilitate the sharing of files and text snippets through a simple, user-friendly interface. Users can upload files or input text, which the application then assigns a unique code. This code can be shared with others, who can then use it to download the file or view the text. The application is built using Java Servlets and runs on an Apache Tomcat server. 
 
 ## Key Features
 
@@ -47,3 +47,6 @@ This web application is designed to facilitate the sharing of files and text sni
 ## Conclusion
 
 This File and Text Sharing Web App provides a simple yet effective solution for sharing files and text snippets using unique codes. Its straightforward design and implementation make it accessible and useful for a variety of users and use cases.
+
+https://github.com/UjjawalSah/NimbusFiles/assets/116669610/541435cb-fd8a-4f57-9c0e-3f6f77e80211
+
