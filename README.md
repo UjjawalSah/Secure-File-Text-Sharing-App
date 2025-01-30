@@ -36,12 +36,51 @@ pip install -r requirements.txt
 python app.py
 
 # Access the web app in your browser
-http://127.0.0.1:5000/ ```
+http://127.0.0.1:5000/
+```
 
-### Explanation:
-- **Code Block Closing**: Make sure the code block is closed with triple backticks (` ``` `) after the last line of the code section. After this, you can continue writing text normally outside the code block.
-- **Text**: Any text that follows the closing of the code block will appear outside the code section, allowing you to write instructions, descriptions, etc., normally.
+## API Endpoints
 
-This will render the markdown correctly with the text after the code block.
+1. **Upload File**  
+   **Method**: POST  
+   **Endpoint**: `/upload`  
+   **Request**: Multipart form with a file  
+   **Response**: JSON with file access code
+
+2. **Retrieve File/Text**  
+   **Method**: GET  
+   **Endpoint**: `/retrieve?fileCode={code}`  
+   **Response**: Download file or JSON response for text
+
+3. **Share Text**  
+   **Method**: POST  
+   **Endpoint**: `/share`  
+   **Request**: Form data with `sharedText`  
+   **Response**: JSON with text access code
+
+4. **Visitor Count**  
+   **Method**: GET  
+   **Endpoint**: `/visitor-count`  
+   **Response**: JSON with visitor count
+
+## Security Measures
+
+- **Restricted File Types**: Only allows specific formats (TXT, JPG, PNG, PDF, DOCX)
+- **Rate Limiting**: Limits API requests per user to prevent abuse
+- **Session-Based Visitor Counting**: Prevents count increase on refresh
+- **Secure File Handling**: Uses `secure_filename()` to avoid path traversal attacks
+
+## Future Enhancements
+
+- Add authentication for restricted access
+- Implement database storage for better scalability
+- Enhance UI with a frontend framework
+
+## License
+
+This project was created by me. Feel free to contribute and enhance it!
+
+
+ 
 
 
