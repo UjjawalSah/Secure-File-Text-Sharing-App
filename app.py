@@ -102,5 +102,4 @@ def visitor_count_endpoint():
         count = get_visitor_count()
     return jsonify(count)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+ 
