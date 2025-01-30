@@ -1,52 +1,101 @@
-# File and Text Sharing Web App
+Secure File & Text Sharing App
 
-## Overview
+A secure and simple web application for sharing files and text with unique access codes. The app ensures secure handling, rate limiting, and visitor count tracking.
 
-This web application is designed to facilitate the sharing of files and text snippets through a simple, user-friendly interface. Users can upload files or input text, which the application then assigns a unique code. This code can be shared with others, who can then use it to download the file or view the text. The application is built using Java Servlets and runs on an Apache Tomcat server. 
+Features
 
-## Key Features
+Secure File Upload & Retrieval: Users can upload files and retrieve them using a unique 4-digit access code.
 
-1. **File Upload and Code Generation**: Users can upload files or input text through a web form. Once the file or text is submitted, the application generates a unique code associated with the uploaded content.
+Text Sharing & Download: Share text securely and retrieve it as a downloadable text file.
 
-2. **Code-Based Retrieval**: Users can retrieve the uploaded file or text by entering the unique code into a form on the website. The application verifies the code and, if valid, allows the user to download the file or view the text.
+File Type Restrictions: Supports TXT, JPG, PNG, PDF, and DOCX files, preventing unauthorized file types.
 
-## How It Works
+Visitor Count Tracking: Persistent visitor count tracking across sessions.
 
-### Upload Process
+Rate Limiting: Prevents excessive requests to enhance security.
 
-1. **File/Text Submission**: The user submits a file or text through an HTML form on the web application.
-2. **Code Generation**: The application generates a unique identifier (UUID) for the uploaded content.
-3. **Storage**: The file or text, along with its unique code, is stored on the server in a designated directory.
-4. **Code Display**: The application displays the unique code to the user, which can be shared with others to access the content.
+Technologies Used
 
-### Retrieval Process
+Flask: Python web framework for backend functionality.
 
-1. **Code Entry**: The user enters the unique code into a form on the web application.
-2. **Validation**: The application checks the entered code against the stored files/texts.
-3. **File/Text Retrieval**: If the code is valid, the application retrieves the corresponding file or text and allows the user to download or view it.
+HTML/CSS: For basic frontend interface.
 
-## Technologies Used
+Session Management: Ensures visitor count persistence.
 
-- **Java Servlets**: For handling HTTP requests and responses.
-- **Apache Tomcat**: As the web server and servlet container.
-- **HTML/CSS**: For the web interface.
-- **UUID**: For generating unique codes.
+Flask-Limiter: Protects against abuse with request rate limiting.
 
-## Benefits
+Werkzeug Secure Filename: Prevents security vulnerabilities in file handling.
 
-- **Ease of Sharing**: Users can easily share files and text by simply providing a code.
-- **Security**: Only users with the correct code can access the shared content.
-- **Simplicity**: The application is straightforward and easy to use, with no need for complex configurations or databases.
+Installation & Setup
 
-## Use Cases
+# Clone the repository
+git clone https://github.com/yourusername/secure-file-sharing.git
+cd secure-file-sharing
 
-- **Collaborative Projects**: Team members can share files and text snippets quickly and easily.
-- **Educational Purposes**: Teachers can share assignments and notes with students using unique codes.
-- **Temporary File Storage**: Users can temporarily store files and share access with others without needing cloud storage accounts.
+# Set up a virtual environment (optional but recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 
-## Conclusion
+# Install dependencies
+pip install -r requirements.txt
 
-This File and Text Sharing Web App provides a simple yet effective solution for sharing files and text snippets using unique codes. Its straightforward design and implementation make it accessible and useful for a variety of users and use cases.
+# Run the Flask application
+python app.py
 
-https://github.com/UjjawalSah/NimbusFiles/assets/116669610/541435cb-fd8a-4f57-9c0e-3f6f77e80211
+# Access the web app in your browser
+http://127.0.0.1:5000/
+
+API Endpoints
+
+1. Upload File
+
+POST /upload
+
+Request: Multipart form with a file
+
+Response: JSON with file access code
+
+2. Retrieve File/Text
+
+GET /retrieve?fileCode={code}
+
+Response: Download file or JSON response for text
+
+3. Share Text
+
+POST /share
+
+Request: Form data with sharedText
+
+Response: JSON with text access code
+
+4. Visitor Count
+
+GET /visitor-count
+
+Response: JSON with visitor count
+
+Security Measures
+
+Restricted File Types: Only allows specific formats (TXT, JPG, PNG, PDF, DOCX)
+
+Rate Limiting: Limits API requests per user to prevent abuse
+
+Session-Based Visitor Counting: Prevents count increase on refresh
+
+Secure File Handling: Uses secure_filename() to avoid path traversal attacks
+
+Future Enhancements
+
+Add authentication for restricted access
+
+Implement database storage for better scalability
+
+Enhance UI with a frontend framework
+
+License
+
+This project is licensed under the MIT License. Feel free to contribute and enhance it!
+
+Developed with ❤️ using Flask.
 
