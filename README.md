@@ -36,6 +36,12 @@ pip install -r requirements.txt
 python app.py
 
 # Access the web app in your browser
-http://127.0.0.1:5000/
+http://127.0.0.1:5000/ ```
+
+### Explanation:
+- **Code Block Closing**: Make sure the code block is closed with triple backticks (` ``` `) after the last line of the code section. After this, you can continue writing text normally outside the code block.
+- **Text**: Any text that follows the closing of the code block will appear outside the code section, allowing you to write instructions, descriptions, etc., normally.
+
+This will render the markdown correctly with the text after the code block.
 
 
