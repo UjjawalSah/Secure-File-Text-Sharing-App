@@ -20,7 +20,7 @@ A secure and simple web application for sharing files and text with unique acces
 
 ## Installation & Setup
 
-```sh
+```
 # Clone the repository
 git clone https://github.com/yourusername/secure-file-sharing.git
 cd secure-file-sharing
