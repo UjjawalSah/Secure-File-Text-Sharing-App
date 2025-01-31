@@ -3,6 +3,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import os
 import random
+import string
 import threading
 
 app = Flask(__name__)
@@ -34,6 +35,21 @@ def allowed_file(filename):
     """Check if the file extension is allowed."""
     allowed_extensions = {'txt', 'jpg', 'png', 'pdf', 'docx'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
+def get_visitor_count():
+    """Read and return the current visitor count."""
+    if not os.path.exists(VISITOR_COUNT_FILE):
+        with open(VISITOR_COUNT_FILE, 'w') as f:
+            f.write('0')
+    with open(VISITOR_COUNT_FILE, 'r') as f:
+        return int(f.read().strip())
+
+def increment_visitor_count():
+    """Increment the visitor count and save it."""
+    count = get_visitor_count() + 1
+    with open(VISITOR_COUNT_FILE, 'w') as f:
+        f.write(str(count))
+    return count
 
 @app.route('/')
 def index():
@@ -101,6 +117,16 @@ def share_text():
         TEXT_STORAGE[text_code] = text
 
     return jsonify({'status': 'success', 'message': 'Text shared successfully', 'textCode': text_code})
+
+@app.route('/visitor-count')
+def visitor_count_endpoint():
+    """Handles visitor count logic."""
+    if 'visited' not in session:
+        session['visited'] = True
+        count = increment_visitor_count()
+    else:
+        count = get_visitor_count()
+    return jsonify(count)
 
 if __name__ == '__main__':
     app.run(debug=True)
