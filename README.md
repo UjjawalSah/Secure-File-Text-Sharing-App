@@ -37,6 +37,8 @@ python app.py
 
 # Access the web app in your browser
 http://127.0.0.1:5000/
+
+#Try Out: https://secure-file-text-sharing-app.vercel.app/
 ```
 
 ## API Endpoints
