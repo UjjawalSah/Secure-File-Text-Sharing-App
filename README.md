@@ -1,24 +1,26 @@
-# Secure File & Text Sharing App
+# 🚀 Secure File & Text Sharing App
 
-A secure and simple web application for sharing files and text with unique access codes. The app ensures secure handling, rate limiting, and visitor count tracking.
+A secure, fast, and easy-to-use web application for sharing files and text with unique access codes. This app ensures secure file handling, rate limiting, and visitor count tracking while offering a clean, user-friendly interface.
 
-## Features
+## 🛠 Features
 
-- **Secure File Upload & Retrieval**: Users can upload files and retrieve them using a unique 4-digit access code.
-- **Text Sharing & Download**: Share text securely and retrieve it as a downloadable text file.
-- **File Type Restrictions**: Supports TXT, JPG, PNG, PDF, and DOCX files, preventing unauthorized file types.
-- **Visitor Count Tracking**: Persistent visitor count tracking across sessions.
-- **Rate Limiting**: Prevents excessive requests to enhance security.
+- **🔒 Secure File Upload & Retrieval**: Upload files (TXT, JPG, PNG, PDF, DOCX) securely and retrieve them using a unique 4-digit access code.
+- **📝 Text Sharing & Download**: Share and retrieve text as a downloadable text file, ensuring content is transferred securely.
+- **📁 File Type Restrictions**: Supports only safe and authorized file types (TXT, JPG, PNG, PDF, DOCX), preventing harmful uploads.
+- **📊 Visitor Count Tracking**: Persistent visitor count tracking across sessions.
+- **⚡ Rate Limiting**: Prevents abuse by limiting excessive requests per user to enhance security.
 
-## Technologies Used
+## 🧰 Technologies Used
 
-- **Flask**: Python web framework for backend functionality.
-- **HTML/CSS**: For basic frontend interface.
-- **Session Management**: Ensures visitor count persistence.
-- **Flask-Limiter**: Protects against abuse with request rate limiting.
-- **Werkzeug Secure Filename**: Prevents security vulnerabilities in file handling.
+- **Flask**: A lightweight Python web framework for backend functionality.
+- **HTML/CSS**: For building the frontend interface.
+- **Session Management**: Ensures persistent visitor count tracking across sessions.
+- **Flask-Limiter**: Protects against abuse by enforcing rate limiting for requests.
+- **Werkzeug Secure Filename**: Helps to securely handle file uploads, preventing path traversal attacks.
 
-## Installation & Setup
+## 📥 Installation & Setup
+
+To get started with this app, follow these steps:
 
 ```
 # Clone the repository
@@ -38,7 +40,6 @@ python app.py
 # Access the web app in your browser
 http://127.0.0.1:5000/
 ```
-
 ## API Endpoints
 
 1. **Upload File**  
