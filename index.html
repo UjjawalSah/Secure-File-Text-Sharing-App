@@ -1,181 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NimbusFile - File Upload and Retrieve</title>
- 
-<style>
-    @charset "UTF-8";
-body {
-font-family: 'Roboto', sans-serif;
-background: #233142;
-color: #fff;
-margin: 0;
-padding: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-}
-
-.container {
-max-width: 600px;
-width: 90%;
-background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-padding: 20px;
-border-radius: 15px;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-text-align: center;
-backdrop-filter: blur(10px);
-}
-
-h1, h2, h3 {
-text-align: center;
-margin: 20px 0;
-}
-
-form {
-margin-top: 20px;
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-
-input[type=file], input[type=text], textarea {
-margin: 10px;
-padding: 12px;
-border: none;
-border-radius: 10px;
-font-size: 16px;
-width: 80%;
-max-width: 400px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-input[type=submit] {
-margin: 10px;
-padding: 10px 20px;
-border: none;
-border-radius: 20px;
-font-size: 16px;
-cursor: pointer;
-background: linear-gradient(135deg, #6a11cb, #2575fc);
-color: #fff;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-width: auto;
-}
-
-input[type=submit]:hover {
-background: linear-gradient(135deg, #5a0fb4, #1d65e0);
-transform: translateY(-3px);
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-input[type=file]:hover, input[type=text]:hover, textarea:hover {
-transform: translateY(-3px);
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.message {
-text-align: center;
-margin-top: 20px;
-}
-
-@media (max-width: 600px) {
-.container {
-width: 100%;
-border-radius: 0;
-}
-}
- 
-</style>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure File & Text Sharing App</title>
+    <link rel="stylesheet" href="style.css">  <!-- Link to external CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="container">
-    <h1>Secure File & Text Sharing App</h1> <p class="small-text">Upload and retrieve files or shared text securely. Supported file types: TXT, JPG, PNG, PDF, DOCX. Maximum file size: 100 MB. (Larger files may take time to process.)</p>
-<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-<input type="file" name="file" required>
-<input type="submit" value="Upload">
-</form>
-<h2>Retrieve File / Text</h2>
-<form action="/retrieve" method="get">
-<input type="text" name="fileCode" placeholder="Enter file / Text code" required>
-<input type="submit" value="Retrieve">
-</form>
-<h3>Share Text</h3>
-<form id="shareTextForm" action="/share" method="post">
-<textarea name="sharedText" rows="5" placeholder="Enter your text here" required></textarea>
-<input type="hidden" name="textSharing" value="true">
-<input type="submit" value="Share">
-</form>
-<div id="visitorCount">
-<h4>Number of Visitors: <span id="count"></span></h4>
-<div style="text-align: center;">
-<p>&copy; 2024 Ujjawal Sah. All rights reserved.</p>
-<p>Designed by <a href="https://nimbusfiles-file-and-text-sharing-web-app.onrender.com/" style="color: #fff; text-decoration: underline;">Ujjawal Sah</a></p>
+    <h1>Secure File & Text Sharing App</h1>
+    <p class="small-text">Upload and retrieve files or shared text securely. Supported file types: TXT, JPG, PNG, PDF, DOCX. Maximum file size: 100 MB. (Larger files may take time to process.)</p>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <input type="submit" value="Upload">
+    </form>
+    <h2>Retrieve File / Text</h2>
+    <form action="/retrieve" method="get">
+        <input type="text" name="fileCode" placeholder="Enter file / Text code" required>
+        <input type="submit" value="Retrieve">
+    </form>
+    <h3>Share Text</h3>
+    <form id="shareTextForm" action="/share" method="post">
+        <textarea name="sharedText" rows="5" placeholder="Enter your text here" required></textarea>
+        <input type="hidden" name="textSharing" value="true">
+        <input type="submit" value="Share">
+    </form>
+    <div id="visitorCount">
+        <h4>Number of Visitors: <span id="count"></span></h4>
+        <div style="text-align: center;">
+            <p>&copy; 2024 Ujjawal Sah. All rights reserved.</p>
+            <p>Designed by <a href="https://nimbusfiles-file-and-text-sharing-web-app.onrender.com/" style="color: #fff; text-decoration: underline;">Ujjawal Sah</a></p>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('uploadForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let formData = new FormData(this);
-
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    Swal.fire({
-                        title: 'Upload Status',
-                        text: data.message + ' Your file code is: ' + data.fileCode,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then(() => location.reload());
-                } else {
-                    Swal.fire({ title: 'Upload Status', text: data.message, icon: 'error', confirmButtonText: 'OK' });
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    
-        document.getElementById('shareTextForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let formData = new FormData(this);
-
-            fetch('/share', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    Swal.fire({
-                        title: 'Share Text Status',
-                        text: data.message + ' Your text code is: ' + data.textCode,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then(() => location.reload());
-                } else {
-                    Swal.fire({ title: 'Share Text Status', text: data.message, icon: 'error', confirmButtonText: 'OK' });
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    
-        fetch('/visitor-count')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('count').textContent = data;
-        })
-        .catch(error => console.error('Error fetching visitor count:', error));
-    });
-</script>
+<script src="script.js"></script> <!-- Link to external JS -->
 </body>
 </html>
